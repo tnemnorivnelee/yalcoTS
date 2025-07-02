@@ -258,106 +258,106 @@ let, const, var의 차이점
 
 // 12. 배열과 튜플, 객체 기초
 
-let numbers: number[] = [1, 2, 3, 4, 5]; // 숫자 배열
+// let numbers: number[] = [1, 2, 3, 4, 5]; // 숫자 배열
 
-let fruits: Array<string> = ["apple", "banana", "cherry"]; // 문자열 배열
+// let fruits: Array<string> = ["apple", "banana", "cherry"]; // 문자열 배열
 
-let scores: number[] = [];
-scores.push(100); // 배열에 값 추가
-scores.push(95, 85); // 여러 값 추가
+// let scores: number[] = [];
+// scores.push(100); // 배열에 값 추가
+// scores.push(95, 85); // 여러 값 추가
 
-// scores.push("A"); // 오류 발생: Type 'string' is not assignable to type 'number'.
+// // scores.push("A"); // 오류 발생: Type 'string' is not assignable to type 'number'.
 
-// 타입스크립트는 타입 추론을 통해 배열의 타입을 자동으로 결정합니다.
-let colors = ["red", "green", "blue"]; // 문자열 배열
-// colors.push(123); // 오류 발생: Type 'number' is not assignable to type 'string'.
+// // 타입스크립트는 타입 추론을 통해 배열의 타입을 자동으로 결정합니다.
+// let colors = ["red", "green", "blue"]; // 문자열 배열
+// // colors.push(123); // 오류 발생: Type 'number' is not assignable to type 'string'.
 
-console.log(numbers[0], fruits[1], colors[2]); // 1 banana blue
+// console.log(numbers[0], fruits[1], colors[2]); // 1 banana blue
 
 
 
 
 
 
-let matrix: number[][] = [
-  [1, 2, 3],
-  [4, 5, 6],
-  [7, 8, 9]
-];
+// let matrix: number[][] = [
+//   [1, 2, 3],
+//   [4, 5, 6],
+//   [7, 8, 9]
+// ];
 
-console.log(matrix[1][2]); // 6
+// console.log(matrix[1][2]); // 6
 
 
-let cube: number[][][] = [
-  [
-    [1, 2],
-    [3, 4]
-  ],
-  [
-    [5, 6],
-    [7, 8]
-  ]
-];
+// let cube: number[][][] = [
+//   [
+//     [1, 2],
+//     [3, 4]
+//   ],
+//   [
+//     [5, 6],
+//     [7, 8]
+//   ]
+// ];
 
-console.log(cube[0][1][0]); // 3
+// console.log(cube[0][1][0]); // 3
 
 
 
 
 
-const names: string[] = ["Alice", "Bob", "Charlie"];
+// const names: string[] = ["Alice", "Bob", "Charlie"];
 
-// find 메서드는 배열에서 조건에 맞는 첫 번째 요소를 찾습니다.
-// B 로 시작하는 이름이 없을 수도 있으므로, optional chaining을 사용합니다.
-// 만약 B로 시작하는 이름이 없다면 undefined가 반환됩니다.
-// 만약 B로 시작하는 이름이 있다면, 그 이름이 반환됩니다.
-const foundName: string | undefined = names.find(name => name.startsWith("B"));
-console.log(foundName); // "Bob"  
+// // find 메서드는 배열에서 조건에 맞는 첫 번째 요소를 찾습니다.
+// // B 로 시작하는 이름이 없을 수도 있으므로, optional chaining을 사용합니다.
+// // 만약 B로 시작하는 이름이 없다면 undefined가 반환됩니다.
+// // 만약 B로 시작하는 이름이 있다면, 그 이름이 반환됩니다.
+// const foundName: string | undefined = names.find(name => name.startsWith("B"));
+// console.log(foundName); // "Bob"
 
 
 
-// 읽기 전용 배열
-// 사용할 수는 있지만 수정할 수 없는 배열
-const originalArray: number[] = [1, 2, 3, 4, 5];
-originalArray[0] = 10; // 수정 가능
+// // 읽기 전용 배열
+// // 사용할 수는 있지만 수정할 수 없는 배열
+// const originalArray: number[] = [1, 2, 3, 4, 5];
+// originalArray[0] = 10; // 수정 가능
 
-const readOnlyNumbers: ReadonlyArray<number> = originalArray;
+// const readOnlyNumbers: ReadonlyArray<number> = originalArray;
 
-const readOnlyScores: readonly number[] = [90, 85, 95];
+// const readOnlyScores: readonly number[] = [90, 85, 95];
 
-// readOnlyNumbers[0] = 20; // 오류 발생: Index signature in type 'readonly number[]' only permits reading
-// readOnlyScores.push(100); // 오류 발생: Property 'push' does not exist on type 'readonly number[]'. 
+// // readOnlyNumbers[0] = 20; // 오류 발생: Index signature in type 'readonly number[]' only permits reading
+// // readOnlyScores.push(100); // 오류 발생: Property 'push' does not exist on type 'readonly number[]'.
 
 
-const newArray = [...readOnlyNumbers, 6]; // [1, 2, 3, 4, 5, 6] - 새로운 배열 생성
+// const newArray = [...readOnlyNumbers, 6]; // [1, 2, 3, 4, 5, 6] - 새로운 배열 생성
 
-newArray[0] = 0; // 새로운 배열은 수정 가능
-newArray.push(7); // 새로운 배열에 값 추가 가능
+// newArray[0] = 0; // 새로운 배열은 수정 가능
+// newArray.push(7); // 새로운 배열에 값 추가 가능
 
-console.log(newArray); // [0, 2, 3, 4, 5, 6, 7]
+// console.log(newArray); // [0, 2, 3, 4, 5, 6, 7]
 
 
 
 
 
 
-// 튜플: 고정된 길이와 타입을 가지는 배열
-// 지정석이 있는 열차 칸과 같음.
-let person: [string, number] = ["Alice", 30]; // 문자열과 숫자를 가지는 튜플
-console.log(person[0]); // "Alice"
-console.log(person[1]); // 30
+// // 튜플: 고정된 길이와 타입을 가지는 배열
+// // 지정석이 있는 열차 칸과 같음.
+// let person: [string, number] = ["Alice", 30]; // 문자열과 숫자를 가지는 튜플
+// console.log(person[0]); // "Alice"
+// console.log(person[1]); // 30
 
-// person = [30, "Alice"]; // 타입은 맞지만 순서가 다르면 오류 발생
+// // person = [30, "Alice"]; // 타입은 맞지만 순서가 다르면 오류 발생
 
-// person = ["Bob", 25, true]; // // 오류 발생: Type '[string, number, boolean]' is not assignable to type '[string, number]'.
+// // person = ["Bob", 25, true]; // // 오류 발생: Type '[string, number, boolean]' is not assignable to type '[string, number]'.
 
-const [firstName, age] = person;
-console.log(firstName); // "Alice"
-console.log(age); // 30
+// const [firstName, age] = person;
+// console.log(firstName); // "Alice"
+// console.log(age); // 30
 
-type OptionalTuple = [string, number, boolean?]; // 마지막 요소는 선택적
-const complete: OptionalTuple = ["Jane", 25, true]; // 모든 요소가 있음
-const partial: OptionalTuple = ["John", 30]; // 마지막 요소가 없음
+// type OptionalTuple = [string, number, boolean?]; // 마지막 요소는 선택적
+// const complete: OptionalTuple = ["Jane", 25, true]; // 모든 요소가 있음
+// const partial: OptionalTuple = ["John", 30]; // 마지막 요소가 없음
 
 
 
@@ -366,70 +366,244 @@ const partial: OptionalTuple = ["John", 30]; // 마지막 요소가 없음
 
 
 
-// 타입 추론에 있어서 배열과 튜플의 차이
-// 배열은 요소의 타입이 동일해야 하며, 길이가 가변적입니다.
-// 튜플은 요소의 타입이 다를 수 있으며, 길이가 고정되어 있습니다.
-const inferredArray = [1, "hello"];
-// inferredArray: (string | number)[] - 요소의 타입이 string과 number로 추론됨
+// // 타입 추론에 있어서 배열과 튜플의 차이
+// // 배열은 요소의 타입이 동일해야 하며, 길이가 가변적입니다.
+// // 튜플은 요소의 타입이 다를 수 있으며, 길이가 고정되어 있습니다.
+// const inferredArray = [1, "hello"];
+// // inferredArray: (string | number)[] - 요소의 타입이 string과 number로 추론됨
 
-// as const를 사용하여 튜플로 추론할 수 있습니다.
-const inferredTuple = [1, "hello"] as const;
-// inferredTuple: readonly [1, "hello"] - 요소의 타입이 고정되어 추론됨
+// // as const를 사용하여 튜플로 추론할 수 있습니다.
+// const inferredTuple = [1, "hello"] as const;
+// // inferredTuple: readonly [1, "hello"] - 요소의 타입이 고정되어 추론됨
 
-// inferredTuple[0] = 2; // 오류 발생: Cannot assign to '0' because it is a read-only property
-// inferredTuple[1] = 'world'; // 오류 발생: Cannot assign to '1' because it is a read-only property
+// // inferredTuple[0] = 2; // 오류 발생: Cannot assign to '0' because it is a read-only property
+// // inferredTuple[1] = 'world'; // 오류 발생: Cannot assign to '1' because it is a read-only property
 
-let explicitTuple: [number, string] = [1, "hello"];
-explicitTuple = [2, "world"]; // 타입이 맞으면 수정 가능
+// let explicitTuple: [number, string] = [1, "hello"];
+// explicitTuple = [2, "world"]; // 타입이 맞으면 수정 가능
 
 
 
 
 
 
-// 객체: 키와 값의 쌍으로 이루어진 데이터 구조
-const personObject: { name: string; age: number; } = {
-  name: "Alice",
-  age: 30
-};
-
-personObject.name = "Bob"; // 수정 가능
-personObject.age = 25; // 수정 가능
-// personObject.address = "123 Main St"; // 오류 발생: Property 'address' does not exist on type '{ name: string; age: number; }'.
-
-
-
-
-
-
-// 인터페이스
-// 인터페이스는 객체의 구조를 정의하는데 사용됩니다.
-interface User {
-  id: number;
-  username: string;
-  isAdmin: boolean;
-}
-
-const adminUsere: User = {
-  id: 0,
-  username: "admin",
-  isAdmin: true
-};
-
-// 오류 발생: Property 'isAdmin' is missing in type '{ id: number; username: string; }' but required in type 'User'.
-// const user1: User = {
-//   id: 1,
-//   username: "admin",
+// // 객체: 키와 값의 쌍으로 이루어진 데이터 구조
+// const personObject: { name: string; age: number; } = {
+//   name: "Alice",
+//   age: 30
 // };
 
-// const user2: User = {
-//   id: "2", // 오류 발생: Type 'string' is not assignable to type 'number'.
-//   username: "admin",
-//   isAdmin: false,
+// personObject.name = "Bob"; // 수정 가능
+// personObject.age = 25; // 수정 가능
+// // personObject.address = "123 Main St"; // 오류 발생: Property 'address' does not exist on type '{ name: string; age: number; }'.
+
+
+
+
+
+
+// // 인터페이스
+// // 인터페이스는 객체의 구조를 정의하는데 사용됩니다.
+// interface User {
+//   id: number;
+//   username: string;
+//   isAdmin: boolean;
 // }
 
+// const adminUsere: User = {
+//   id: 0,
+//   username: "admin",
+//   isAdmin: true
+// };
+
+// // 오류 발생: Property 'isAdmin' is missing in type '{ id: number; username: string; }' but required in type 'User'.
+// // const user1: User = {
+// //   id: 1,
+// //   username: "admin",
+// // };
+
+// // const user2: User = {
+// //   id: "2", // 오류 발생: Type 'string' is not assignable to type 'number'.
+// //   username: "admin",
+// //   isAdmin: false,
+// // }
 
 
+
+
+/* ------------------------------------------------------------------------ */
+
+
+
+// 13. 열거형
+
+// 열거형(Enums)은 관련된 상수들의 집합을 정의하는데 사용됩니다.
+const USER_ROLE_ADMIN = 0;
+const USER_ROLE_MANAGER = 1;
+const USER_ROLE_EMPLOYEE = 2;
+const USER_ROLE_GUEST = 3;
+
+function checkUserAccess(userRole: number): boolean {
+  if (userRole === USER_ROLE_ADMIN || userRole === USER_ROLE_MANAGER) {
+    return true; // 관리자나 매니저는 접근 허용
+  }
+  return false; // 그 외의 역할은 접근 거부
+}
+
+
+console.log(checkUserAccess(USER_ROLE_ADMIN)); // true
+console.log(checkUserAccess(2)); // false
+console.log(checkUserAccess(99)); // IDE 에서 에러 발생하지 않음 
+
+
+
+
+enum UserRole {
+  Admin = 0,
+  Manager = 1,
+  Employee = 2,
+  Guest = 3
+}
+
+
+function checkUserAccessEnum(userRole: UserRole): boolean {
+  if (userRole === UserRole.Admin || userRole === UserRole.Manager) {
+    return true; // 관리자나 매니저는 접근 허용
+  }
+  return false; // 그 외의 역할은 접근 거부
+}
+
+console.log(checkUserAccessEnum(UserRole.Admin)); // true
+console.log(checkUserAccessEnum(3));
+// console.log(checkUserAccessEnum(99)); // Error: Argument of type '99' is not assignable to parameter of type 'UserRole'.
+
+
+
+
+
+enum Direction {
+  Up,
+  Down,
+  Left,
+  Right
+}
+
+console.log(Direction.Up); // 0
+console.log(Direction.Down); // 1
+console.log(Direction.Left); // 2
+console.log(Direction.Right); // 3
+
+console.log(Direction[0]); // "Up"
+console.log(Direction[1]); // "Down"
+console.log(Direction[2]); // "Left"
+console.log(Direction[3]); // "Right"
+
+
+
+
+enum HttpStatus {
+  OK = 200,
+  Created = 201,
+  NoContent = 204,
+  BadRequest = 400,
+  Unauthorized = 401,
+  Forbidden = 403,
+  NotFound = 404,
+  InternalServerError = 500
+}
+
+const status1: HttpStatus = HttpStatus.OK;
+const status2: HttpStatus = 201;
+// const status3: HttpStatus = 203; // Error: Type '203' is not assignable to type 'HttpStatus'.
+
+console.log(status1); // 200
+console.log(status2); // 201
+
+
+
+
+enum Priority {
+  Low = 5,
+  Medium,
+  High = 10,
+  Critical
+}
+
+console.log(Priority.Low); // 5
+console.log(Priority.Medium); // 6
+console.log(Priority.High); // 10
+console.log(Priority.Critical); // 11
+
+
+
+
+
+enum Theme {
+  Light = "light-theme",
+  Dark = "dark-theme",
+  System = "system-theme"
+}
+
+function applyTheme(theme: Theme): void {
+  const className = theme;
+  console.log(`Applying theme: ${className}`);
+}
+
+applyTheme(Theme.Light); // "Applying theme: light-theme"
+// applyTheme("light-theme"); //  X // Error: Argument of type '"light-theme"' is not assignable to parameter of type 'Theme'.
+
+console.log(Theme.Dark); // "dark-theme"
+console.log(Theme.System); // "system-theme"
+console.log(Theme["Light"]); // "light-theme"
+
+
+
+
+
+
+enum Direction2 {
+  Up,
+  Down,
+  Left,
+  Right
+}
+
+const dir = Direction2.Up; // dir: Direction2
+
+// const 열거형은 최적화가 특별히 중요한 상황들에서 사용됩니다.
+const enum FastDirection {
+  Up,
+  Down,
+  Left,
+  Right
+}
+
+const fastDir = FastDirection.Up; // fastDir: 0
+
+
+
+
+// 열거형 대신 type union을 쓰는 곳도 늘어나고 있습니다.
+// 타입 유니언은 열거형과 비슷한 역할을 하지만, 더 유연성이 있습니다.
+type CardSuitUnion = "Hearts" | "Diamonds" | "Clubs" | "Spades";
+
+function displaySuitUnion(suit: CardSuitUnion): string {
+  switch (suit) {
+    case "Hearts":
+      return "♥ Hearts";
+    case "Diamonds":
+      return "♦ Diamonds";
+    case "Clubs":
+      return "♣ Clubs";
+    case "Spades":
+      return "♠ Spades";
+    default:
+      return "Unknown suit"; // 이 경우는 발생하지 않음
+  }
+}
+
+console.log(displaySuitUnion("Hearts")); // "♥ Hearts"
+// console.log(displaySuitUnion("Unknown")); // Error: Argument of type '"Unknown"' is not assignable to parameter of type 'CardSuitUnion'.
 
 /* ------------------------------------------------------------------------ */
 
