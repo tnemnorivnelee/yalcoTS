@@ -437,173 +437,281 @@ let, const, var의 차이점
 
 // 13. 열거형
 
-// 열거형(Enums)은 관련된 상수들의 집합을 정의하는데 사용됩니다.
-const USER_ROLE_ADMIN = 0;
-const USER_ROLE_MANAGER = 1;
-const USER_ROLE_EMPLOYEE = 2;
-const USER_ROLE_GUEST = 3;
+// // 열거형(Enums)은 관련된 상수들의 집합을 정의하는데 사용됩니다.
+// const USER_ROLE_ADMIN = 0;
+// const USER_ROLE_MANAGER = 1;
+// const USER_ROLE_EMPLOYEE = 2;
+// const USER_ROLE_GUEST = 3;
 
-function checkUserAccess(userRole: number): boolean {
-  if (userRole === USER_ROLE_ADMIN || userRole === USER_ROLE_MANAGER) {
-    return true; // 관리자나 매니저는 접근 허용
+// function checkUserAccess(userRole: number): boolean {
+//   if (userRole === USER_ROLE_ADMIN || userRole === USER_ROLE_MANAGER) {
+//     return true; // 관리자나 매니저는 접근 허용
+//   }
+//   return false; // 그 외의 역할은 접근 거부
+// }
+
+
+// console.log(checkUserAccess(USER_ROLE_ADMIN)); // true
+// console.log(checkUserAccess(2)); // false
+// console.log(checkUserAccess(99)); // IDE 에서 에러 발생하지 않음
+
+
+
+
+// enum UserRole {
+//   Admin = 0,
+//   Manager = 1,
+//   Employee = 2,
+//   Guest = 3
+// }
+
+
+// function checkUserAccessEnum(userRole: UserRole): boolean {
+//   if (userRole === UserRole.Admin || userRole === UserRole.Manager) {
+//     return true; // 관리자나 매니저는 접근 허용
+//   }
+//   return false; // 그 외의 역할은 접근 거부
+// }
+
+// console.log(checkUserAccessEnum(UserRole.Admin)); // true
+// console.log(checkUserAccessEnum(3));
+// // console.log(checkUserAccessEnum(99)); // Error: Argument of type '99' is not assignable to parameter of type 'UserRole'.
+
+
+
+
+
+// enum Direction {
+//   Up,
+//   Down,
+//   Left,
+//   Right
+// }
+
+// console.log(Direction.Up); // 0
+// console.log(Direction.Down); // 1
+// console.log(Direction.Left); // 2
+// console.log(Direction.Right); // 3
+
+// console.log(Direction[0]); // "Up"
+// console.log(Direction[1]); // "Down"
+// console.log(Direction[2]); // "Left"
+// console.log(Direction[3]); // "Right"
+
+
+
+
+// enum HttpStatus {
+//   OK = 200,
+//   Created = 201,
+//   NoContent = 204,
+//   BadRequest = 400,
+//   Unauthorized = 401,
+//   Forbidden = 403,
+//   NotFound = 404,
+//   InternalServerError = 500
+// }
+
+// const status1: HttpStatus = HttpStatus.OK;
+// const status2: HttpStatus = 201;
+// // const status3: HttpStatus = 203; // Error: Type '203' is not assignable to type 'HttpStatus'.
+
+// console.log(status1); // 200
+// console.log(status2); // 201
+
+
+
+
+// enum Priority {
+//   Low = 5,
+//   Medium,
+//   High = 10,
+//   Critical
+// }
+
+// console.log(Priority.Low); // 5
+// console.log(Priority.Medium); // 6
+// console.log(Priority.High); // 10
+// console.log(Priority.Critical); // 11
+
+
+
+
+
+// enum Theme {
+//   Light = "light-theme",
+//   Dark = "dark-theme",
+//   System = "system-theme"
+// }
+
+// function applyTheme(theme: Theme): void {
+//   const className = theme;
+//   console.log(`Applying theme: ${className}`);
+// }
+
+// applyTheme(Theme.Light); // "Applying theme: light-theme"
+// // applyTheme("light-theme"); //  X // Error: Argument of type '"light-theme"' is not assignable to parameter of type 'Theme'.
+
+// console.log(Theme.Dark); // "dark-theme"
+// console.log(Theme.System); // "system-theme"
+// console.log(Theme["Light"]); // "light-theme"
+
+
+
+
+
+
+// enum Direction2 {
+//   Up,
+//   Down,
+//   Left,
+//   Right
+// }
+
+// const dir = Direction2.Up; // dir: Direction2
+
+// // const 열거형은 최적화가 특별히 중요한 상황들에서 사용됩니다.
+// const enum FastDirection {
+//   Up,
+//   Down,
+//   Left,
+//   Right
+// }
+
+// const fastDir = FastDirection.Up; // fastDir: 0
+
+
+
+
+// // 열거형 대신 type union을 쓰는 곳도 늘어나고 있습니다.
+// // 타입 유니언은 열거형과 비슷한 역할을 하지만, 더 유연성이 있습니다.
+// type CardSuitUnion = "Hearts" | "Diamonds" | "Clubs" | "Spades";
+
+// function displaySuitUnion(suit: CardSuitUnion): string {
+//   switch (suit) {
+//     case "Hearts":
+//       return "♥ Hearts";
+//     case "Diamonds":
+//       return "♦ Diamonds";
+//     case "Clubs":
+//       return "♣ Clubs";
+//     case "Spades":
+//       return "♠ Spades";
+//     default:
+//       return "Unknown suit"; // 이 경우는 발생하지 않음
+//   }
+// }
+
+// console.log(displaySuitUnion("Hearts")); // "♥ Hearts"
+// // console.log(displaySuitUnion("Unknown")); // Error: Argument of type '"Unknown"' is not assignable to parameter of type 'CardSuitUnion'.
+
+/* ------------------------------------------------------------------------ */
+
+
+// 14. 함수
+
+function greet(name: string): string {
+  return `Hello, ${name}!`;
+}
+
+const farewell = function (name: string): string {
+  return `Goodbye, ${name}!`;
+};
+
+const add = (a: number, b: number): number => {
+  return a + b;
+};
+
+console.log(
+  greet("World"),
+  farewell("Alice"),
+  add(5, 10)
+);
+
+
+
+
+
+
+function add1(a: number, b: number, c?: number): number {
+  if (c) {
+    return a + b + c; // 세 번째 인자가 있으면 모두 더함
   }
-  return false; // 그 외의 역할은 접근 거부
+  return a + b; // 세 번째 인자가 없으면 a와 b만 더함
 }
 
+const addition1 = add1(1, 2);
+const addition2 = add1(1, 2, 3);
 
-console.log(checkUserAccess(USER_ROLE_ADMIN)); // true
-console.log(checkUserAccess(2)); // false
-console.log(checkUserAccess(99)); // IDE 에서 에러 발생하지 않음 
-
-
+// const addition3 = add1(1); // // Error: Expected 2-3 arguments, but got 1.
 
 
-enum UserRole {
-  Admin = 0,
-  Manager = 1,
-  Employee = 2,
-  Guest = 3
+
+
+
+
+
+// 나머지 인자(Spread Operator)를 사용한 함수
+// 나머지 인자는 함수가 가변적인 개수의 인자를 받을 수 있도록 합니다.
+// 이 경우, 인자의 개수는 제한이 없습니다.
+// 나머지 인자는 배열로 전달됩니다.
+function sum(...numbers: number[]): number {
+  return numbers.reduce((acc, num) => acc + num, 0); // 배열의 모든 숫자를 더함
 }
 
-
-function checkUserAccessEnum(userRole: UserRole): boolean {
-  if (userRole === UserRole.Admin || userRole === UserRole.Manager) {
-    return true; // 관리자나 매니저는 접근 허용
-  }
-  return false; // 그 외의 역할은 접근 거부
-}
-
-console.log(checkUserAccessEnum(UserRole.Admin)); // true
-console.log(checkUserAccessEnum(3));
-// console.log(checkUserAccessEnum(99)); // Error: Argument of type '99' is not assignable to parameter of type 'UserRole'.
-
-
-
-
-
-enum Direction {
-  Up,
-  Down,
-  Left,
-  Right
-}
-
-console.log(Direction.Up); // 0
-console.log(Direction.Down); // 1
-console.log(Direction.Left); // 2
-console.log(Direction.Right); // 3
-
-console.log(Direction[0]); // "Up"
-console.log(Direction[1]); // "Down"
-console.log(Direction[2]); // "Left"
-console.log(Direction[3]); // "Right"
-
-
-
-
-enum HttpStatus {
-  OK = 200,
-  Created = 201,
-  NoContent = 204,
-  BadRequest = 400,
-  Unauthorized = 401,
-  Forbidden = 403,
-  NotFound = 404,
-  InternalServerError = 500
-}
-
-const status1: HttpStatus = HttpStatus.OK;
-const status2: HttpStatus = 201;
-// const status3: HttpStatus = 203; // Error: Type '203' is not assignable to type 'HttpStatus'.
-
-console.log(status1); // 200
-console.log(status2); // 201
-
-
-
-
-enum Priority {
-  Low = 5,
-  Medium,
-  High = 10,
-  Critical
-}
-
-console.log(Priority.Low); // 5
-console.log(Priority.Medium); // 6
-console.log(Priority.High); // 10
-console.log(Priority.Critical); // 11
-
-
-
-
-
-enum Theme {
-  Light = "light-theme",
-  Dark = "dark-theme",
-  System = "system-theme"
-}
-
-function applyTheme(theme: Theme): void {
-  const className = theme;
-  console.log(`Applying theme: ${className}`);
-}
-
-applyTheme(Theme.Light); // "Applying theme: light-theme"
-// applyTheme("light-theme"); //  X // Error: Argument of type '"light-theme"' is not assignable to parameter of type 'Theme'.
-
-console.log(Theme.Dark); // "dark-theme"
-console.log(Theme.System); // "system-theme"
-console.log(Theme["Light"]); // "light-theme"
+console.log(
+  sum(1, 2, 3), // 6
+  sum(10, 20, 30, 40), // 100
+  sum() // 0
+); // 빈 배열이 들어오면 0 반환
 
 
 
 
 
 
-enum Direction2 {
-  Up,
-  Down,
-  Left,
-  Right
-}
-
-const dir = Direction2.Up; // dir: Direction2
-
-// const 열거형은 최적화가 특별히 중요한 상황들에서 사용됩니다.
-const enum FastDirection {
-  Up,
-  Down,
-  Left,
-  Right
-}
-
-const fastDir = FastDirection.Up; // fastDir: 0
 
 
+function processInput(value: string): string;
+function processInput(value: number): number;
 
 
-// 열거형 대신 type union을 쓰는 곳도 늘어나고 있습니다.
-// 타입 유니언은 열거형과 비슷한 역할을 하지만, 더 유연성이 있습니다.
-type CardSuitUnion = "Hearts" | "Diamonds" | "Clubs" | "Spades";
-
-function displaySuitUnion(suit: CardSuitUnion): string {
-  switch (suit) {
-    case "Hearts":
-      return "♥ Hearts";
-    case "Diamonds":
-      return "♦ Diamonds";
-    case "Clubs":
-      return "♣ Clubs";
-    case "Spades":
-      return "♠ Spades";
-    default:
-      return "Unknown suit"; // 이 경우는 발생하지 않음
+function processInput(value: string | number): string | number {
+  if (typeof value === "string") {
+    return `Processed string: ${value.toUpperCase()}`; // 문자열을 대문자로 변환
+  } else {
+    return value * 2; // 숫자를 두 배로 반환
   }
 }
 
-console.log(displaySuitUnion("Hearts")); // "♥ Hearts"
-// console.log(displaySuitUnion("Unknown")); // Error: Argument of type '"Unknown"' is not assignable to parameter of type 'CardSuitUnion'.
+
+const processed1 = processInput("hello"); // "Processed string: HELLO"
+const processed2 = processInput(42); // 84
+
+// function processInput(value: string): string; 을 선언해서 가능.
+// 선언하지 않았다면 // processed1.toLowerCase(); 는 오류가 발생합니다.
+// 왜그러냐면 // processInput("hello")의 반환 타입이 string | number 이기 때문입니다.
+// 따라서, processed1의 타입은 string | number가 됩니다.
+// 이 경우, TypeScript는 processed1이 string인지 확신할 수 없기 때문에
+// toLowerCase() 메서드를 사용할 수 없습니다.
+// 따라서, processed1.toLowerCase()를 사용하려면 타입 단언을 해야 합니다
+const myString = processed1.toLowerCase(); // "processed string: hello"
+
+
+
+// 콜백 함수
+function fetchData(url: string, callback: (data: string) => void): void {
+  // Simulating an asynchronous operation
+  setTimeout(() => {
+    const data = `Data from ${url}`;
+    callback(data); // 콜백 함수 호출
+  }, 100);
+}
+
+fetchData("https://api.example.com", (data) => {
+  console.log(data); // "Data from https://api.example.com"
+});
+
 
 /* ------------------------------------------------------------------------ */
 
