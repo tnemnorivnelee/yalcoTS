@@ -610,60 +610,40 @@ let, const, var의 차이점
 
 // 14. 함수
 
-function greet(name: string): string {
-  return `Hello, ${name}!`;
-}
+// function greet(name: string): string {
+//   return `Hello, ${name}!`;
+// }
 
-const farewell = function (name: string): string {
-  return `Goodbye, ${name}!`;
-};
+// const farewell = function (name: string): string {
+//   return `Goodbye, ${name}!`;
+// };
 
-const add = (a: number, b: number): number => {
-  return a + b;
-};
+// const add = (a: number, b: number): number => {
+//   return a + b;
+// };
 
-console.log(
-  greet("World"),
-  farewell("Alice"),
-  add(5, 10)
-);
-
-
-
-
-
-
-function add1(a: number, b: number, c?: number): number {
-  if (c) {
-    return a + b + c; // 세 번째 인자가 있으면 모두 더함
-  }
-  return a + b; // 세 번째 인자가 없으면 a와 b만 더함
-}
-
-const addition1 = add1(1, 2);
-const addition2 = add1(1, 2, 3);
-
-// const addition3 = add1(1); // // Error: Expected 2-3 arguments, but got 1.
+// console.log(
+//   greet("World"),
+//   farewell("Alice"),
+//   add(5, 10)
+// );
 
 
 
 
 
 
+// function add1(a: number, b: number, c?: number): number {
+//   if (c) {
+//     return a + b + c; // 세 번째 인자가 있으면 모두 더함
+//   }
+//   return a + b; // 세 번째 인자가 없으면 a와 b만 더함
+// }
 
-// 나머지 인자(Spread Operator)를 사용한 함수
-// 나머지 인자는 함수가 가변적인 개수의 인자를 받을 수 있도록 합니다.
-// 이 경우, 인자의 개수는 제한이 없습니다.
-// 나머지 인자는 배열로 전달됩니다.
-function sum(...numbers: number[]): number {
-  return numbers.reduce((acc, num) => acc + num, 0); // 배열의 모든 숫자를 더함
-}
+// const addition1 = add1(1, 2);
+// const addition2 = add1(1, 2, 3);
 
-console.log(
-  sum(1, 2, 3), // 6
-  sum(10, 20, 30, 40), // 100
-  sum() // 0
-); // 빈 배열이 들어오면 0 반환
+// // const addition3 = add1(1); // // Error: Expected 2-3 arguments, but got 1.
 
 
 
@@ -671,47 +651,245 @@ console.log(
 
 
 
+// // 나머지 인자(Spread Operator)를 사용한 함수
+// // 나머지 인자는 함수가 가변적인 개수의 인자를 받을 수 있도록 합니다.
+// // 이 경우, 인자의 개수는 제한이 없습니다.
+// // 나머지 인자는 배열로 전달됩니다.
+// function sum(...numbers: number[]): number {
+//   return numbers.reduce((acc, num) => acc + num, 0); // 배열의 모든 숫자를 더함
+// }
 
-function processInput(value: string): string;
-function processInput(value: number): number;
-
-
-function processInput(value: string | number): string | number {
-  if (typeof value === "string") {
-    return `Processed string: ${value.toUpperCase()}`; // 문자열을 대문자로 변환
-  } else {
-    return value * 2; // 숫자를 두 배로 반환
-  }
-}
-
-
-const processed1 = processInput("hello"); // "Processed string: HELLO"
-const processed2 = processInput(42); // 84
-
-// function processInput(value: string): string; 을 선언해서 가능.
-// 선언하지 않았다면 // processed1.toLowerCase(); 는 오류가 발생합니다.
-// 왜그러냐면 // processInput("hello")의 반환 타입이 string | number 이기 때문입니다.
-// 따라서, processed1의 타입은 string | number가 됩니다.
-// 이 경우, TypeScript는 processed1이 string인지 확신할 수 없기 때문에
-// toLowerCase() 메서드를 사용할 수 없습니다.
-// 따라서, processed1.toLowerCase()를 사용하려면 타입 단언을 해야 합니다
-const myString = processed1.toLowerCase(); // "processed string: hello"
+// console.log(
+//   sum(1, 2, 3), // 6
+//   sum(10, 20, 30, 40), // 100
+//   sum() // 0
+// ); // 빈 배열이 들어오면 0 반환
 
 
 
-// 콜백 함수
-function fetchData(url: string, callback: (data: string) => void): void {
-  // Simulating an asynchronous operation
-  setTimeout(() => {
-    const data = `Data from ${url}`;
-    callback(data); // 콜백 함수 호출
-  }, 100);
-}
 
-fetchData("https://api.example.com", (data) => {
-  console.log(data); // "Data from https://api.example.com"
-});
+
+
+
+
+// function processInput(value: string): string;
+// function processInput(value: number): number;
+
+
+// function processInput(value: string | number): string | number {
+//   if (typeof value === "string") {
+//     return `Processed string: ${value.toUpperCase()}`; // 문자열을 대문자로 변환
+//   } else {
+//     return value * 2; // 숫자를 두 배로 반환
+//   }
+// }
+
+
+// const processed1 = processInput("hello"); // "Processed string: HELLO"
+// const processed2 = processInput(42); // 84
+
+// // function processInput(value: string): string; 을 선언해서 가능.
+// // 선언하지 않았다면 // processed1.toLowerCase(); 는 오류가 발생합니다.
+// // 왜그러냐면 // processInput("hello")의 반환 타입이 string | number 이기 때문입니다.
+// // 따라서, processed1의 타입은 string | number가 됩니다.
+// // 이 경우, TypeScript는 processed1이 string인지 확신할 수 없기 때문에
+// // toLowerCase() 메서드를 사용할 수 없습니다.
+// // 따라서, processed1.toLowerCase()를 사용하려면 타입 단언을 해야 합니다
+// const myString = processed1.toLowerCase(); // "processed string: hello"
+
+
+
+// // 콜백 함수
+// function fetchData(url: string, callback: (data: string) => void): void {
+//   // Simulating an asynchronous operation
+//   setTimeout(() => {
+//     const data = `Data from ${url}`;
+//     callback(data); // 콜백 함수 호출
+//   }, 100);
+// }
+
+// fetchData("https://api.example.com", (data) => {
+//   console.log(data); // "Data from https://api.example.com"
+// });
 
 
 /* ------------------------------------------------------------------------ */
 
+
+
+// 15. 인터페이스 (정의;, 선택적/읽기전용 속성, 인덱스 시그니처, 매핑된 타입)
+
+
+// 선택적 속성
+interface Product {
+  id: number;
+  name: string;
+  price: number;
+  description?: string; // 선택적 속성
+}
+
+const product1: Product = {
+  id: 1,
+  name: "Laptop",
+  price: 999.99,
+};
+
+const product2: Product = {
+  id: 2,
+  name: "Smartphone",
+  price: 499.99,
+  description: "Latest model",
+};
+
+
+// 선택적 속성을 사용하는 경우에는 타입 가드를 사용하여 안전하게 접근할 수 있습니다.
+// 선택적 속성은 객체에 존재하지 않을 수도 있기 때문에, 접근하기 전에 확인이 필요합니다.
+function printDescription1(product: Product): void {
+  if (product.description) {
+    console.log(`Description: ${product.description}`);
+  } else {
+    console.log("No description available.");
+  }
+}
+
+// 타입 가드 대신에 Null 병합 연산자(??) 를 사용할 수도 있습니다.
+function printDescription2(product: Product): void {
+  const description = product.description ?? "No description available.";
+  console.log(`Description: ${description}`);
+}
+
+
+
+
+
+
+
+// 읽기 전용 속성
+interface Config {
+  readonly apiUrl: string; // 읽기 전용 속성
+  endpoint: string;
+  timeout?: number; // 선택적 속성
+}
+
+const config: Config = {
+  apiUrl: "https://api.example.com",
+  endpoint: "/data",
+};
+
+config.endpoint = "/new-data"; // 수정 가능
+config.timeout = 5000; // 선택적 속성 수정 가능
+// config.apiUrl = "https://new-api.example.com"; // 오류 발생: Cannot assign to 'apiUrl' because it is a read-only property.
+
+
+
+interface ReadonlyArrayDemo {
+  readonly items: number[]; // 읽기 전용 배열 속성
+}
+
+const demo: ReadonlyArrayDemo = {
+  items: [1, 2, 3, 4, 5],
+};
+
+demo.items.push(6);
+demo.items[0] = 10;
+// demo.items = [7, 8, 9]; // 오류 발생: Cannot assign to 'items' because it is a read-only property.
+
+
+
+interface MathOperation {
+  (a: number, b: number): number; // 함수 타입 정의
+}
+
+const add: MathOperation = (a, b) => a + b; // 함수 구현
+const multiply: MathOperation = (a, b) => a * b; // 다른 함수 구현  
+
+// 인터페이스로 함수 타입을 정의했기 때문에 toFixed 메서드를 사용할 수 있습니다.
+// toFixed는 number 타입의 메서드이므로, 반환값을 number로 지정해야 합니다.
+// 따라서, add와 multiply 함수의 반환 타입은 number입니다.
+console.log(
+  add(1, 2).toFixed(2), // "3.00"
+  multiply(3, 4).toFixed(2) // "12.00"
+);
+
+
+
+const operations: MathOperation[] = [
+  (a, b) => a + b,
+  (a, b) => a - b,
+  (a, b) => a * b,
+  (a, b) => a / b
+];
+
+operations.forEach(op => {
+  // console.log(op(10, "Two")); // "10Two" - TypeScript는 암묵적으로 string으로 변환합니다.
+  // console.log(op(10, 2)); // 오류 발생: Argument of type 'number' is not assignable to parameter of type 'string'.
+});
+
+
+
+
+// 인덱스 시그니처
+interface PhoneBook {
+  [name: string]: string; // 이름을 키로 하고, 전화번호를 값으로 가지는 인덱스 시그니처
+}
+
+const phones: PhoneBook = {
+  Alice: "123-456-7890",
+  Bob: "987-654-3210",
+};
+
+phones.Charlie = "555-555-5555"; // 새로운 전화번호 추가 가능
+phones["Dave"] = "111-222-3333"; // 대괄호 표기법으로도 추가 가능
+phones[0] = "000-000-0000"; // !!!
+
+console.log(console.log(phones)); // { Alice: '123-456-7890', Bob: '987-654-3210', Charlie: '555-555-5555', Dave: '111-222-3333', '0': '000-000-0000' }
+
+
+
+
+interface StringArray {
+  [index: number]: string; // 숫자를 인덱스로 사용하여 문자열을 반환하는 인덱스 시그니처
+}
+
+const veges: StringArray = {
+  10: "Carrot",
+  11: "Potato",
+  12: "Tomato",
+};
+
+const fruits: StringArray = ["Apple", "Banana", "Cherry"]; // 배열로도 사용 가능
+
+console.log(veges[10]); // "Carrot"
+console.log(fruits[1]); // "Banana"
+
+console.log(veges, fruits);
+
+
+
+
+
+type AllowedKeys = 'English' | 'Math' | 'Science';
+
+type Scores = {
+  [K in AllowedKeys]: number; // AllowedKeys에 정의된 키를 사용하여 숫자 타입의 속성을 가지는 객체 타입
+};
+
+type Grades = {
+  [K in AllowedKeys]: string; // AllowedKeys에 정의된 키를 사용하여 문자열 타입의 속성을 가지는 객체 타입
+};
+
+
+const scores: Scores = {
+  English: 90,
+  Math: 85,
+  Science: 95
+};
+
+const grades: Grades = {
+  English: "A",
+  Math: "B",
+  Science: "A+"
+};
+
+
+/* ------------------------------------------------------------------------ */
